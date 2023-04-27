@@ -17,4 +17,14 @@ router.get('/', (req, res) => {
     res.render('places/index', {places});
 });
 
+//New
+router.get('/new', (req, res) => {
+    res.render('places/new');
+});
+
+//:id
+router.get('/:id', (req, res) => {
+    res.render('places/:id');
+});
+
 module.exports = router;
