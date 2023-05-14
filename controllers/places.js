@@ -67,7 +67,7 @@ router.post('/:id/comment', (req, res) =>{
             place.comments.push(comment.id);
             place.save()
             .then(() => {
-                res.redirect(`/places${req.params.id}`);
+                res.redirect(`/places/${req.params.id}`);
             })
         })
         .catch(err => {

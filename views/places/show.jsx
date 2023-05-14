@@ -2,6 +2,11 @@ const React = require('react');
 const Def = require('../default');
 
 function show (data) {
+    let rating = (
+        <h3 className='inactive'>
+            Not yet rated
+        </h3>
+    );
     let comments = (
         <h3 className='inactive'>
             No comments yet!
@@ -20,11 +25,17 @@ function show (data) {
                 </div>
             );
         });
-    }
+    };
     return (
         <Def>
             <main>
                 <h1>{data.place.name}</h1>
+
+                <h2>
+                    Rating
+                </h2>
+                {rating}
+
                 <div className='row'>
                     <div className='col-sm-6'>
                         <img src={data.place.pic} alt={data.place.name} />
@@ -50,15 +61,15 @@ function show (data) {
                             <div className='row'>
                                 <div className='form-group col-sm-6'>
                                     <label htmlFor='author'>Author</label>
-                                    <input className='form-control' id='author' name='author' />
+                                    <input className='form-control' type='text' id='author' name='author' />
                                 </div>
                                 <div className='form-group col-sm-6'>
                                     <label htmlFor='content'>Content</label>
                                     <input className='form-control' id='content' name='content' />
                                 </div>
-                                <div className='form-group col-sm-6'>
+                                <div className='form-group col-sm-4'>
                                     <label htmlFor="stars">Star Rating</label>
-                                    <input className='form-control' type='range' step='0.5' min='1' max='5' id='stars' name='stars' />
+                                    <input className='form-control' type='number' step='0.5' min='1' max='5' id='stars' name='stars' />
                                 </div>
                                 <div className='col-sm-2'>
                                     <label htmlFor="rant">Rant?</label>
@@ -68,9 +79,11 @@ function show (data) {
                             <input type="submit" className='btn btn-primary' value='Add Comment' />
                         </form>
                         <hr/>
+
                         <a href={`/places/${data.place.id}/edit`} className='btn btn-warning'>
                             Edit
                         </a>
+
                         <form method='POST' action={`/places/${data.place.id}?_method=DELETE`}>
                             <button type='submit' className='btn btn-danger'>
                                 Delete
